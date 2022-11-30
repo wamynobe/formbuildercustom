@@ -23,6 +23,10 @@ class FormBuilderCheckboxGroup<T> extends FormBuilderField<List<T>> {
   final Widget? separator;
   final ControlAffinity controlAffinity;
   final OptionsOrientation orientation;
+  final double? height;
+
+  /// This's used to change the icon shape
+  final OutlinedBorder? iconShape;
 
   /// Creates a list of Checkboxes for selecting multiple options
   FormBuilderCheckboxGroup({
@@ -58,6 +62,8 @@ class FormBuilderCheckboxGroup<T> extends FormBuilderField<List<T>> {
     this.separator,
     this.controlAffinity = ControlAffinity.leading,
     this.orientation = OptionsOrientation.wrap,
+    this.iconShape,
+    this.height,
   }) : super(
           key: key,
           initialValue: initialValue,
@@ -77,6 +83,8 @@ class FormBuilderCheckboxGroup<T> extends FormBuilderField<List<T>> {
             return InputDecorator(
               decoration: state.decoration,
               child: GroupedCheckbox<T>(
+                iconShape: iconShape,
+                height: height,
                 orientation: orientation,
                 value: state.value,
                 options: options,

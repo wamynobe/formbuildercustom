@@ -179,6 +179,11 @@ class GroupedCheckbox<T> extends StatelessWidget {
 
   final ControlAffinity controlAffinity;
 
+  final double? height;
+
+  /// This's used to change the icon shape
+  final OutlinedBorder? iconShape;
+
   const GroupedCheckbox({
     Key? key,
     required this.options,
@@ -202,13 +207,20 @@ class GroupedCheckbox<T> extends StatelessWidget {
     this.wrapVerticalDirection = VerticalDirection.down,
     this.separator,
     this.controlAffinity = ControlAffinity.leading,
+    this.height,
+    this.iconShape,
   }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     final widgetList = <Widget>[];
     for (var i = 0; i < options.length; i++) {
-      widgetList.add(item(i));
+      widgetList.add(
+        SizedBox(
+          height: height,
+          child: item(i),
+        ),
+      );
     }
     Widget finalWidget;
     if (orientation == OptionsOrientation.vertical) {
@@ -251,6 +263,7 @@ class GroupedCheckbox<T> extends StatelessWidget {
     final optionValue = option.value;
     final isOptionDisabled = true == disabled?.contains(optionValue);
     final control = Checkbox(
+      shape: iconShape,
       activeColor: activeColor,
       checkColor: checkColor,
       focusColor: focusColor,
