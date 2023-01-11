@@ -181,6 +181,8 @@ class GroupedCheckbox<T> extends StatelessWidget {
 
   final double? height;
 
+  final BorderSide? checkboxBorderSide;
+
   /// This's used to change the icon shape
   final OutlinedBorder? iconShape;
 
@@ -209,6 +211,7 @@ class GroupedCheckbox<T> extends StatelessWidget {
     this.controlAffinity = ControlAffinity.leading,
     this.height,
     this.iconShape,
+    this.checkboxBorderSide,
   }) : super(key: key);
 
   @override
@@ -269,6 +272,9 @@ class GroupedCheckbox<T> extends StatelessWidget {
       focusColor: focusColor,
       hoverColor: hoverColor,
       materialTapTargetSize: materialTapTargetSize,
+      side: MaterialStateBorderSide.resolveWith(
+        (states) => checkboxBorderSide,
+      ),
       value: tristate
           ? value?.contains(optionValue)
           : true == value?.contains(optionValue),
