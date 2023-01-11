@@ -24,6 +24,7 @@ class FormBuilderCheckboxGroup<T> extends FormBuilderField<List<T>> {
   final ControlAffinity controlAffinity;
   final OptionsOrientation orientation;
   final double? height;
+  final BorderSide? checkboxBorderSide;
 
   /// This's used to change the icon shape
   final OutlinedBorder? iconShape;
@@ -64,6 +65,7 @@ class FormBuilderCheckboxGroup<T> extends FormBuilderField<List<T>> {
     this.orientation = OptionsOrientation.wrap,
     this.iconShape,
     this.height,
+    this.checkboxBorderSide,
   }) : super(
           key: key,
           initialValue: initialValue,
@@ -83,6 +85,7 @@ class FormBuilderCheckboxGroup<T> extends FormBuilderField<List<T>> {
             return InputDecorator(
               decoration: state.decoration,
               child: GroupedCheckbox<T>(
+                checkboxBorderSide: checkboxBorderSide,
                 iconShape: iconShape,
                 height: height,
                 orientation: orientation,
