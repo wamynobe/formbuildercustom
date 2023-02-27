@@ -273,7 +273,15 @@ class GroupedCheckbox<T> extends StatelessWidget {
       hoverColor: hoverColor,
       materialTapTargetSize: materialTapTargetSize,
       side: MaterialStateBorderSide.resolveWith(
-        (states) => checkboxBorderSide,
+        (states) {
+          if (states.contains(MaterialState.disabled)) {
+            return checkboxBorderSide;
+          }
+          if (states.contains(MaterialState.selected)) {
+            return null;
+          }
+          return null;
+        },
       ),
       value: tristate
           ? value?.contains(optionValue)
